@@ -4,4 +4,4 @@
 ###################################################
 import pandas as pd
 df = pd.read_excel('file2.xlsx')
-print(df)
+print("tipo df", type(df))

@@ -55,7 +55,19 @@
 #     print(i)
 
 
-n = int(input("Digite um número inteiro positivo"))
+n = int(input("Digite o tamanho da sua lista (n)"))
+j = []
+# criando uma lista com n elementos len(j) = n
 
-for i in list(range(n)):
-    print("n-", n)
+# FOR
+# for i in list(range(n)):
+#     j.append(i+1)
+
+# WHILE
+i = 0
+while (i < n):
+    j.append(i+1)
+    i = i+1
+print(j)
+print(len(j))
+print(type(j))

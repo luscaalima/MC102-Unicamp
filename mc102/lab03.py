@@ -12,22 +12,34 @@
 # <Método de pagamento>
 
 # 1 a 07
-dayWeek = int(input())
+# dayWeek = int(input())
 # 0 a 24
 startTime = int(input())
 # 1 a 60
 startMinutes = int(input())
 
-studentOrNot = str(input())
+# studentOrNot = str(input())
 
-payment = str(input())
+# payment = str(input())
+
+#  18h30m -> Noturno
+#  18h29m -> Vespertino
 
 
 def vespertinoOuNoturno(hora, minutos):
-    if (hora >= 18 and minutos > 30) or (hora > 18):
-        return True
-    else:
+    if hora < 18:
+        # VESPERTINO
         return False
+    elif hora == 18:
+        if minutos >= 30:
+            # NOTURNO
+            return True
+        else:
+            # VESPERTINO
+            return False
+    elif hora > 18:
+        # NOTURNO
+        return True
 
 
 # leitura de dados

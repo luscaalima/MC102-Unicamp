@@ -72,43 +72,40 @@ def vespertinoOuNoturno(hora, minutos):
 def valorStudent(diaSemana:int):
     
  match diaSemana:
-            case 1:
-                return 15
-            case 2 : 
+        case 1:
+         return 15
+        case 2 : 
             #  case 3:
-             return 10
-            case 3:
-                return 10    
-            case 4:
-                return 15
-            case 5:
-                 return 15
-            case 6:
-                return 20 
-            case 7:
-              return 20
-            case _:
-              return -1  
+          return 10
+        case 3:
+          return 10    
+        case 4:
+         return 15
+        case 5:
+         return 15
+        case 6:
+         return 10 
+        case 7:
+          return 20
+        case _:
+          return -1  
       
-      
-
-                    
-   
 
 # leitura de dados
-priceTicket = 0
+ingresso = 0
 
 #ESTUDANTE
-if studentOrNot =='s':
-   print('estudante')
-   priceTicket=valorStudent(dayWeek)
+if studentOrNot.upper() =='S':
+   ingresso=valorStudent(dayWeek)
 else:   
- print('não estudante') 
     #DOMINGO
  if dayWeek == 1 :
      #DOMINGO NÃO TEM VERIFICAÇÕES
-     print('DOMINGO')
-     priceTicket=30*(30/100)
+   
+     if payment.upper() =='C':
+       ingresso=30-(30*(30/100))
+     else:
+      ingresso=30
             # if vespertinoOuNoturno(startTime,startMinutes) :
             #     print("DOMINGO NOTURNO") 
             # else :
@@ -116,82 +113,69 @@ else:
      #SEGUNDA
  elif dayWeek == 2  :
         if vespertinoOuNoturno(startTime,startMinutes) :
-                print("SEGUNDA NOTURNO") 
-                priceTicket=20*(50/100)
+                ingresso=20-(20*(50/100))
         else :
-         print("SEGUNDA VESPERTINO") 
-         priceTicket=15*(50/100)
+         ingresso=15-(15*(50/100))
     #TERÇA 
  elif dayWeek == 3 :
         if vespertinoOuNoturno(startTime,startMinutes) :
-                    print("TERÇA NOTURNO") 
-                    if payment =='c':
-                     priceTicket=20*(50/100)
+                    if payment.upper() =='C':
+                     ingresso=20-(20*(50/100))
                     else:
-                        priceTicket=20 
+                        ingresso=20 
         else :
-                  print("TERÇA VESPERTINO") 
-                  if payment =='c':
-                     priceTicket=15*(50/100)
+                  if payment.upper() =='C':
+                     ingresso=15-(15*(50/100))
                   else:
-                       priceTicket=15
+                       ingresso=15
     #QUARTA
  elif dayWeek == 4  :
         if vespertinoOuNoturno(startTime,startMinutes) :
-                print("QUARTA NOTURNO") 
-                if payment =='c': 
-                  priceTicket=30*(50/100)
+                if payment.upper() =='C': 
+                  ingresso=30*(50/100)
                 else:
-                    priceTicket=30
+                    ingresso=30
         else :
-                print("QUARTA VESPERTINO") 
-                if payment =='c':   
-                 priceTicket=15*(50/100)
+                if payment.upper() =='C':   
+                 ingresso=15 -(15*(50/100))
                 else:
-                  priceTicket=15  
+                  ingresso=15  
     #QUINTA
  elif dayWeek == 5 :
         if vespertinoOuNoturno(startTime,startMinutes) :
-            print("QUINTA NOTURNO") 
-            if payment =='c':  
-             priceTicket=30*(50/100)
+            if payment.upper() =='C':  
+             ingresso=30-(30*(50/100))
             else:
-                priceTicket=30
+                ingresso=30
         else :
-            print("QUINTA VESPERTINO") 
-            if payment =='c': 
-             priceTicket=20*(50/100)
+            if payment.upper() =='C': 
+             ingresso=20-(20*(50/100))
             else:
-                priceTicket=20
+                ingresso=20
     #SEXTA 
  elif dayWeek == 6 :
         if vespertinoOuNoturno(startTime,startMinutes) :
-            print("SEXTA NOTURNO")
-            if payment =='c':
+            if payment.upper() =='C':
                 #DESCONTO
-              print("passasasa")
-              priceTicket= 40 *(30/100)
+              ingresso= 40-(40* 30/100)
             else :
-                priceTicket=40
+                ingresso=40
         else :
-            print("SEXTA VESPERTINO")
-            if payment =='c':
-             priceTicket=20*(50/100)
+            if payment.upper() =='C':
+             ingresso=20-(20*(50/100))
             else :
-                priceTicket=20
+                ingresso=20
     #SABADO
  elif dayWeek == 7  :   
         if vespertinoOuNoturno(startTime,startMinutes) :
-                print("SABADO NOTURNO")
-                if payment =='s':
-                  priceTicket=40*(20/100)
+                if payment.upper()=='C':
+                  ingresso=40-(40*(20/100))
                 else:
-                    priceTicket=40
+                    ingresso=40
         else :
-                print("SABADO VESPERTINO")
-                if payment =='c':
-                 priceTicket=30*(20/100)
+                if payment.upper() =='C':
+                 ingresso=30-(30*(20/100))
                 else:
-                   priceTicket=30  
+                   ingresso=30  
                 
-print('Valor do ingresso: R$', format(priceTicket, '.2f').replace('.', ','))
+print('Valor do ingresso: R$', format(ingresso, '.2f').replace('.', ','))

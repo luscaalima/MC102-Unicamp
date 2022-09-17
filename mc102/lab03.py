@@ -5,11 +5,6 @@
 # RA: 263267
 ###################################################
 
-# <Dia da semana>
-# <Hora de início da sessão>
-# <Minuto de início da sessão>
-# <Estudante>
-# <Método de pagamento>
 
 dayWeek = int(input())
 startTime = int(input())
@@ -17,155 +12,126 @@ startMinutes = int(input())
 studentOrNot = str(input())
 payment = str(input())
 
-#  18h30m -> Noturno
-#  18h29m -> Vespertino
-
-# s -> ESTUDANTE
-# n -> NÃO ESTUDANTE
-
-# D -> DINHEIRO
-# C -> CARTÃO
-
+# NOTURNO ->TRUE
+# VESPERTINO ->FALSE
 
 def vespertinoOuNoturno(hora, minutos):
     if hora < 18:
-        # VESPERTINO
         return False
     elif hora == 18:
         if minutos >= 30:
-            # NOTURNO
             return True
         else:
-            # VESPERTINO
             return False
     elif hora > 18:
-        # NOTURNO
         return True
 
-
-# função retorna o valor do ingresso a depender do dia da semana para estudante
 def valorStudentVespertino(diaSemana: int):
 
-    if diaSemana ==1:
+    if diaSemana ==1 or diaSemana == 7:
         return 15
-    elif diaSemana ==2:
+    elif diaSemana ==2 or diaSemana == 3:
         return 7.5
-    elif diaSemana ==3:
-        return 7.5
-    elif diaSemana ==4:
+    elif diaSemana ==4 or diaSemana == 5 or diaSemana == 6:
         return 10
-    elif diaSemana ==5:
-        return 10
-    elif diaSemana ==6:
-        return 10
-    elif diaSemana ==7:
-        return 15
  
 def valorStudentNoturno(diaSemana: int):
 
     if diaSemana ==1:
         return 15
-    elif diaSemana ==2:
+    elif diaSemana ==2 or diaSemana == 3 :
         return 10
-    elif diaSemana ==3:
-        return 10
-    elif diaSemana ==4:
+    elif diaSemana ==4 or diaSemana == 5 :
         return 15
-    elif diaSemana ==5:
-        return 15
-    elif diaSemana ==6:
+    elif diaSemana ==6 or diaSemana == 7 :
         return 20
+   
+def  valorIngressoParaEstudante(flag:bool,diaSemana:int):
+    #NOTURNO
+ if flag:
+     return valorStudentNoturno(diaSemana)
+ else:
+  return valorStudentVespertino(diaSemana)
+
+def getValorIngressoNoturno(diaSemana:int):
+
+    if diaSemana ==1 or diaSemana ==4 or diaSemana == 5:
+        return 30
+    elif diaSemana ==2 or diaSemana == 3:
+        return 20
+    elif diaSemana==6 or  diaSemana ==7:
+        return 40
+
+def getDescontoNoturno(diaSemana:int):
+
+    if diaSemana ==1 or diaSemana ==6:
+        return 30
+    elif diaSemana ==2 or diaSemana == 3 or diaSemana==4 or diaSemana==5:
+        return 50
     elif diaSemana ==7:
         return 20
     
+def getDescontoVespertino(diaSemana:int):
 
-# leitura de dados
+    if diaSemana ==1:
+        return 30
+    elif diaSemana ==2 or diaSemana == 3 or diaSemana==4 or diaSemana==5 or diaSemana==6:
+        return 50
+    elif diaSemana ==7:
+        return 20    
+    
+def getValorIngressoVespertino(diaSemana:int):
+
+    if diaSemana ==1 or diaSemana ==7:
+        return 30
+    elif diaSemana ==2 or diaSemana == 3 or diaSemana==4:
+        return 15
+    elif diaSemana ==5 or diaSemana == 6:
+        return 20
+
 ingresso = 0
 
 # ESTUDANTE
 if studentOrNot.upper() == "S":
-   if vespertinoOuNoturno(startTime, startMinutes):
-    ingresso = valorStudentNoturno(dayWeek)
-   else:
-      ingresso = valorStudentVespertino(dayWeek)
+    ingresso = valorIngressoParaEstudante(vespertinoOuNoturno(startTime,startMinutes),dayWeek)
+    
+#NÃO ESTUDANTE 
 else:
-    # DOMINGO
-    if dayWeek == 1:
-        # DOMINGO NÃO TEM VERIFICAÇÕES
+#NOTURNO   E (DOMINGO OU QUARTA OU QUINTA) INGRESSO MESMO VALOR
+    if vespertinoOuNoturno(startTime,startMinutes) and ( dayWeek == 1  or dayWeek == 4 or dayWeek ==5):
+        ingresso = getValorIngressoNoturno(dayWeek)
         if payment.upper() == "C":
-            ingresso = 30 - (30 * (30 / 100))
-        else:
-            ingresso = 30
-    # SEGUNDA OU TERÇA
-    elif dayWeek == 2 or dayWeek ==3:
-          # SEGUNDA OU TERÇA NOTURNO
-        if vespertinoOuNoturno(startTime, startMinutes):
-             if payment.upper() == "C":
-              ingresso = 20 - (20 * (50 / 100))
-             else:
-              ingresso=20    
-         # SEGUNDA OU TERÇA VESPERTINO      
-        else:
-          if payment.upper() == "C":  
-            ingresso = 15 - (15 * (50 / 100))
-          else:
-              ingresso=15    
-    # QUARTA
-    elif dayWeek == 4:
-        # QUARTA NOTURNO
-        if vespertinoOuNoturno(startTime, startMinutes):
-            if payment.upper() == "C":
-                ingresso = 30 * (50 / 100)
-            else:
-                ingresso = 30
-         # QUARTA VESPERTINO       
-        else:
-            if payment.upper() == "C":
-                ingresso = 15 - (15 * (50 / 100))
-            else:
-                ingresso = 15
-    # QUINTA
-    elif dayWeek == 5:
-            # QUINTA NOTURNO
-        if vespertinoOuNoturno(startTime, startMinutes):
-            if payment.upper() == "C":
-                ingresso = 30 - (30 * (50 / 100))
-            else:
-                ingresso = 30
-          # QUINTA VESPERTINO        
-        else:
-            if payment.upper() == "C":
-                ingresso = 20 - (20 * (50 / 100))
-            else:
-                ingresso = 20
-    # SEXTA
-    elif dayWeek == 6:
-        #SEXTA NOTURNO
-        if vespertinoOuNoturno(startTime, startMinutes):
-            if payment.upper() == "C":
-                # DESCONTO
-                ingresso = 40 - (40 * 30 / 100)
-            else:
-                ingresso = 40
-         #SEXTA VESPERTINO        
-        else:
-            if payment.upper() == "C":
-                ingresso = 20 - (20 * (50 / 100))
-            else:
-                ingresso = 20
-    # SABADO
-    elif dayWeek == 7:
-          # SABADO NOTURNO
-        if vespertinoOuNoturno(startTime, startMinutes):
-            if payment.upper() == "C":
-                ingresso = 40 - (40 * (20 / 100))
-            else:
-                ingresso = 40
-           # SABADO VESPERTINO       
-        else:
-            if payment.upper() == "C":
-                ingresso = 30 - (30 * (20 / 100))
-            else:
-                ingresso = 30
-                
+            desconto = getDescontoNoturno(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))
+#NOTURNO   E (SEGUNDA OU TERÇA) INGRESSO MESMO VALOR            
+    elif vespertinoOuNoturno(startTime,startMinutes) and ( dayWeek == 2  or dayWeek == 3):
+        ingresso = getValorIngressoNoturno(dayWeek)
+        if payment.upper() == "C":
+            desconto = getDescontoNoturno(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))  
+#NOTURNO   E (SEXTA OU SABADO) INGRESSO MESMO VALOR            
+    elif vespertinoOuNoturno(startTime,startMinutes) and ( dayWeek == 6  or dayWeek == 7):
+        ingresso = getValorIngressoNoturno(dayWeek)
+        if payment.upper() == "C":
+            desconto = getDescontoNoturno(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))          
+#VESPERTINO   E (DOMINGO OU SABADO) INGRESSO MESMO VALOR               
+    elif vespertinoOuNoturno(startTime,startMinutes)== False and ( dayWeek == 1  or dayWeek == 7):
+      ingresso = getValorIngressoVespertino(dayWeek)
+      if payment.upper() == "C":
+            desconto = getDescontoVespertino(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))
+#VESPERTINO   E (SEGUNDA OU TERCA OU QUARTA) INGRESSO MESMO VALOR               
+    elif vespertinoOuNoturno(startTime,startMinutes)== False and ( dayWeek == 2  or dayWeek == 3 or dayWeek == 4):
+      ingresso = getValorIngressoVespertino(dayWeek)
+      if payment.upper() == "C":
+            desconto = getDescontoVespertino(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))
+#VESPERTINO   E (QUINTA OU SEXTA) INGRESSO MESMO VALOR               
+    elif vespertinoOuNoturno(startTime,startMinutes)== False and ( dayWeek ==5  or dayWeek == 6):
+      ingresso = getValorIngressoVespertino(dayWeek)
+      if payment.upper() == "C":
+            desconto = getDescontoVespertino(dayWeek)
+            ingresso =  ingresso - (ingresso*(desconto/100))        
+            
 print("Valor do ingresso: R$", format(ingresso, ".2f").replace(".", ","))

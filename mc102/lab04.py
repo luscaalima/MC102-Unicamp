@@ -17,13 +17,14 @@ while operacao != 0:
         total_estoque = operacao + total_estoque
         operacao = int(input())
     else:
-        if total_estoque > operacao:
+        if (total_estoque > operacao) and( total_estoque != 0):
             total_estoque = total_estoque + operacao
             quantidade_vendas = quantidade_vendas + 1
             operacao = int(input())
         else:
             operacao = -operacao
             errosArray.append(f'Quantidade indisponível para a venda de {operacao} unidades.')
+            operacao = 0
             operacao = int(input())
             
 if len(errosArray) > 0:

@@ -17,7 +17,7 @@ while operacao != 0:
         total_estoque = operacao + total_estoque
         operacao = int(input())
     else:
-        if (total_estoque > operacao) and( total_estoque != 0):
+        if total_estoque > (-operacao):
             total_estoque = total_estoque + operacao
             quantidade_vendas = quantidade_vendas + 1
             operacao = int(input())
@@ -31,6 +31,6 @@ if len(errosArray) > 0:
     for erro in errosArray:
         print(erro)
 
-print(f"Quantidade de vendas realizadas:{quantidade_vendas}")
-print(f"Quantidade em estoque:{total_estoque}")
+print(f"Quantidade de vendas realizadas: {quantidade_vendas}")
+print(f"Quantidade em estoque: {total_estoque}")
 # impressão da saída

@@ -78,34 +78,36 @@ def imprime_matriz(M):
 
 
 def transporMatriz(matriz):
-    
-   
-    colunas = len(matriz[0])
-   
-    a = []
-    newLine = []
-    colums = []
-    for i in range(len(matriz)):
-        colums.append(matriz[i])
-        for j in range(colums):
-          a.append(colums)        
-    print('colunas',a)
-    # aTrans.append(newLine)   
-    # print(aTrans)
-    
+    linhasOld =len(matriz)
+    colunasOld = len(matriz[0])
+    # TRANSFORMA UMA MATRIZ MxN EM UMA MATRIZ NxM
+    # print('linhasOld',linhasOld)
+    # print('colunasOld',colunasOld)
+    linhasNew= []
+    matrizTransposta = []
+    for j in range(colunasOld):
+        linhasNew= []
+        for i in range(linhasOld):
+           linhasNew.append(matriz[i][j]) 
+        matrizTransposta.append(linhasNew) 
+    print('matrizTransposta')     
+    for i in range(len(matrizTransposta)):
+        print(matrizTransposta[i])
+#CRIANDO MATRIZ N x M 
 l = int(input("Entre com o número de linhas: ")) # l = 3
 c = int(input("Entre com o número de colunas: ")) # c = 4
 matriz = []
-linhas = []
+
 for i in range(l):
      linhas = []
      for j in range(c):
-         linha = int(input(""))
+         print(f'Digite o elemento : {i+1}.{j+1}')
+         linha = int(input())
          linhas.append(linha)
      matriz.append(linhas)
 
         
-# print(matriz)
+print('matriz')
 for i in range(len(matriz)) :
     print(matriz[i])      
 

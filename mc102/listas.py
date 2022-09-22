@@ -81,8 +81,6 @@ def transporMatriz(matriz):
     linhasOld =len(matriz)
     colunasOld = len(matriz[0])
     # TRANSFORMA UMA MATRIZ MxN EM UMA MATRIZ NxM
-    # print('linhasOld',linhasOld)
-    # print('colunasOld',colunasOld)
     linhasNew= []
     matrizTransposta = []
     for j in range(colunasOld):

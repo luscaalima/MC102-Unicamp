@@ -6,40 +6,33 @@
 ##################################################
 
 # Leitura da torre de panquecas
-torre = [int(panqueca) for panqueca in input().split(' ')]
+torre = [int(panqueca) for panqueca in input().split(" ")]
 torreOrdenada = sorted(torre)
 # print('torre ->',torre)
 
-# if torre == torreOrdenada:
-#   print('Torre estavel')
-# else:
-    #faz um movimento 
+# faz um movimento
 while True:
-#   print(m)
-  m = int(input())  
-  if m== 0:
-      break
-  
-  if m >= len(torre) : 
-    torre = list(reversed(torre))
-  
-  
-  
-  
-  
-  
-  movimento = torre[:-m] # OK
-  # print('movimento',movimento)
-  movimento = list(reversed(movimento))
-  # print('movimento reversed',movimento) #OK
-  # print('-->',torre[:m])
-  torre = movimento+torre[:m]
+    # print(m)
+    m = int(input())
+    if m == 0:
+        break
+    else:
+        if m >= len(torre):
+            torre = list(reversed(torre))
+            print(torre)
+        else:
+            movimento = torre[:m]  # OK
+            # print('movimento',movimento)
+            movimento = list(reversed(movimento))
+            # print('movimento reversed',movimento) #OK
+            # print('-->',torre[m:])
+            torre = movimento + torre[m:]
 
 # print('torre',torre)
-# print('torre Ordenada',torreOrdenada)       
+# print('torre Ordenada',torreOrdenada)
 if torre == torreOrdenada:
- print('Torre estavel')
+    print("Torre estavel")
 else:
- print('Torre instavel') 
-        
+    print("Torre instavel")
+
 # Impressão da saída

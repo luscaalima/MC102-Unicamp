@@ -6,7 +6,7 @@
 ##################################################
 
 # Leitura da torre de panquecas
-torre = [int(panqueca) for panqueca in input().split(',')]
+torre = [int(panqueca) for panqueca in input().split(' ')]
 torreOrdenada = sorted(torre)
 
 # print('torre',torre)
@@ -15,17 +15,18 @@ if torre == torreOrdenada:
   print('Torre estavel')
 else:
     #faz um movimento 
-    m =-1
+    m = -1
     while m != 0:
         m = int(input())  
         movimento = torre[m:]
-        movimento.sort(reverse=True)
+        movimento.sort(reverse=False)
         # print('movimento',movimento)
         # print('-->',torre[:m])
-        torre = torre[:m]+movimento
-        torre.sort()
-        # print(torre)
-   
-    print('Torre instavel') 
+        torre = movimento+torre[:m]
+        
+    if torre == torreOrdenada:
+     print('Torre estavel')
+    else:
+     print('Torre instavel') 
         
 # Impressão da saída

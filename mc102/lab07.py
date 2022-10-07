@@ -11,39 +11,48 @@ defesa = []
 for i in range(n):
     d= int(input())
     defesa.append(d)
-print(defesa)
+print('defesa',defesa)
 # Leitura das tropas de ataque
 m= int(input())
 ataque = []
-for i2 in range(m):
+for i in range(m):
     a= int(input())
     ataque.append(a)
-print(ataque)
+print('ataque',ataque)
 vitorias=0
 empates=0
 derrotas=0
+# //*
+index = 0
 # Processamento da guerra
-for i in ataque:
-    for j in defesa:   
-      # Ganhei uma batalha
-      if j>i:
-         vitorias =vitorias+1
-      # Empatei uma batalha
-      elif j == i:    
-        empates= empates+1
-     # Perdi uma batalha
-      elif j<i:  
-        derrotas=derrotas+1
-    print('vitorias ->',vitorias)
-    print('empates ->',empates)
-    print('derrotas ->',derrotas)    
-    if vitorias > derrotas:
-        print('ganhou')
-        break     
-        
-        
-        
-        
+indexTwo=0
+for i in defesa :
+ for j in ataque:
+    if j > defesa[indexTwo]:
+     vitorias=vitorias+1
+    elif j == defesa[indexTwo]:
+     empates=empates+1        
+    elif j<defesa[indexTwo]:
+     derrotas=derrotas+1     
+    indexTwo=indexTwo+1  
+    
+ if vitorias > derrotas:
+     print(f'ganhou{indexTwo}')
+     break
+ elif vitorias < derrotas:
+    pass
+ elif vitorias==derrotas:
+     pass
+ vitorias=0
+ empates=0
+ derrotas=0
+ indexTwo=0
+ indexTwo=indexTwo+1
+   
+
+# print('vitorias ->',vitorias)
+# print('empates ->',empates)
+# print('derrotas ->',derrotas)    
         
             
 # Saída de dados

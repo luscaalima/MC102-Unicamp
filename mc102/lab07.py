@@ -11,14 +11,14 @@ defesa = []
 for i in range(n):
     d= int(input())
     defesa.append(d)
-# print('defesa',defesa)
 # Leitura das tropas de ataque
 m= int(input())
 ataque = []
 for i in range(m):
     a= int(input())
     ataque.append(a)
-# print('ataque',ataque)
+
+
 posicao =None
 index=0
 indexTwo=0
@@ -30,19 +30,15 @@ for i in defesa[:-len(ataque)+1]:
     indexTwo=indexTwo+1
     for j in ataque:
         if j > defesa[index]:
-        #  print(f'{j}>{defesa[index]}')
          vitorias=vitorias+1   
         elif j== defesa[index]:
-        #   print(f'{j}=={defesa[index]}')
           empates=empates+1      
         else :
-            # print(f'{j}<{defesa[index]}')
             derrotas = derrotas+1    
         index=index+1
     
     if vitorias > derrotas:
         posicao = indexTwo
-        # print('indexTwo',indexTwo)
         break     
     else:
      index=indexTwo

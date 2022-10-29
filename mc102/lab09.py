@@ -13,66 +13,79 @@
 
 
 estoque = {
-'nomeProduto':[
-  'LUCAS'
-  ],
-'quantidadeProduto':[8]  
+'nomeProduto':[],
+'quantidadeProduto':[], 
+'quantidadeCompras':[], 
+'quantidadeVendas':[] 
 }
-  
-# print ('type',type(estoque))
+quantidadeIndisponivel=[]
+
 while True:
   entrada = input() 
   if entrada.upper() =="FIM":
    break
   else :
-    nomeProduto = entrada.split(':')[0]
+    nomeProduto = (entrada.split(':')[0])
     # X
     quantidadeProduto = int(entrada.split(':')[1])
     if quantidadeProduto > 0 :
-      print('nomeProduto',estoque['nomeProduto'])
-      print( 'if ',nomeProduto in estoque['nomeProduto'])
+      #COMPRA DE X UNIDEADES
       if nomeProduto in estoque['nomeProduto']:
         #Altera quantidadeProduto
         index =estoque['nomeProduto'].index(nomeProduto)
-        estoque['quantidadeProduto'][index]= quantidadeProduto
+        estoque['quantidadeProduto'][index]=int(estoque['quantidadeProduto'][index])+quantidadeProduto
+        estoque['quantidadeCompras'][index] =  estoque['quantidadeCompras'][index] +1
       else: 
+        # isso indica um  pedido de compra de X(quantidadeProduto) unidades do produto N(nomeProduto) para reposição do estoque
         estoque['nomeProduto'].append(nomeProduto)
         estoque['quantidadeProduto'].append(quantidadeProduto)
-     #  isso indica um  pedido de compra de X unidades do produto N para reposição do estoque
+        estoque['quantidadeCompras'].append(1)
+        estoque['quantidadeVendas'].append(0)
+    
     else:
+    
       if nomeProduto in estoque['nomeProduto']:
         #Altera quantidadeProduto
         index =estoque['nomeProduto'].index(nomeProduto)
-        estoque['quantidadeProduto'][index]= quantidadeProduto
+        
+        if (estoque['quantidadeProduto'][index]+quantidadeProduto) >= 0 :
+          estoque['quantidadeProduto'][index]=int(estoque['quantidadeProduto'][index])+quantidadeProduto
+          estoque['quantidadeVendas'][index] =  estoque['quantidadeVendas'][index] +1
+          
+        else :
+          #converter quantidadeProduto
+          # print("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+          quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+    
       else: 
-        index = estoque['nomeProduto'].index(nomeProduto)
-        if  (-quantidadeProduto) > estoque['quantidadeProduto'][index]:
-          # tirando do estoque mais do que tem ???
-          #"Quantidade indisponivel para a venda de " + quantidadeProduto + " unidade(s) do produto " + nomeProduto + "."
-         print("Quantidade indisponivel para a venda de " + (-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+       quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
     
     
+    # print('estoque',estoque)
+  
+  
+print('type',type(estoque))  
+print(estoque)     
     
-    
-    
-    
-    
-      # caso contrário, isso indica um pedido de venda de X unidades do produto N
-    
-    # print('nomeProduto', nomeProduto)
-    # print('quantidadeProduto', quantidadeProduto)
+if len(quantidadeIndisponivel)>0:
+ for mensagem in  quantidadeIndisponivel :
+   print(mensagem)
+   
+
+   
+for produto in estoque['nomeProduto']:
+ index =estoque['nomeProduto'].index(produto)
+#  print('index:',index)
+ 
+ print('Produto',estoque['nomeProduto'][index])    
+#  print("Produto: " + N)
+ E=estoque['quantidadeProduto'][index]
+ print("Quantidade em Estoque: " + str(E))
+ print("Pedidos de Compra: " + str(estoque['quantidadeCompras'][index]))
+ print("Pedidos de Venda: " +str(estoque['quantidadeVendas'][index]))
     
  
-    #  estoque.update( new_estoque)
-  # estoque.update(item) print('estoque',estoque)
-# # Processamento
-#   if quantidadeProduto > 0:
-#     #COMPRA
-#     print('compra de ',quantidadeProduto,'unidades do produto',nomeProduto )
-#   else :
-#     print('venda  de ',-quantidadeProduto,'unidades do produto',nomeProduto )
-  #...
-# print("Quantidade indisponivel para a venda de " + X + " unidade(s) do produto " + N + ".")
+    
 
 # Impressão da saída
 # ...

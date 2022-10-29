@@ -19,13 +19,15 @@ estoque = {
 'quantidadeVendas':[] 
 }
 quantidadeIndisponivel=[]
+qntProduto=[]
+nomes=[]
 
 while True:
   entrada = input() 
   if entrada.upper() =="FIM":
    break
   else :
-    nomeProduto = (entrada.split(':')[0])
+    nomeProduto = (entrada.split(':')[0]).rstrip()
     # X
     quantidadeProduto = int(entrada.split(':')[1])
     if quantidadeProduto > 0 :
@@ -55,41 +57,34 @@ while True:
         else :
           #converter quantidadeProduto
           # print("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
-          quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+          # quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+          qntProduto.append(str(-quantidadeProduto) )
+          nomes.append(str(nomeProduto))
     
       else: 
-       quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
+       qntProduto.append(str(-quantidadeProduto) )
+       nomes.append(str(nomeProduto))
+      #  quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
     
     
-    # print('estoque',estoque)
-  
-  
-print('type',type(estoque))  
-print(estoque)     
-    
-if len(quantidadeIndisponivel)>0:
- for mensagem in  quantidadeIndisponivel :
-   print(mensagem)
+if len(qntProduto)>0:
+ for nome in  nomes:
+   index=nomes.index(nome)
+   X=str(qntProduto[index])
+   N=nome
+   print("Quantidade indisponivel para a venda de "+ X +" unidade(s) do produto "+ N + ".")
    
+oldArrayProduto = estoque['nomeProduto'][:]
+estoque['nomeProduto'].sort()
 
    
 for produto in estoque['nomeProduto']:
- index =estoque['nomeProduto'].index(produto)
-#  print('index:',index)
- 
- print('Produto',estoque['nomeProduto'][index])    
-#  print("Produto: " + N)
- E=estoque['quantidadeProduto'][index]
- print("Quantidade em Estoque: " + str(E))
- print("Pedidos de Compra: " + str(estoque['quantidadeCompras'][index]))
- print("Pedidos de Venda: " +str(estoque['quantidadeVendas'][index]))
-    
- 
-    
-
-# Impressão da saída
-# ...
-  # print("Produto: " + N)
-  # print("Quantidade em Estoque: " + E)
-  # print("Pedidos de Compra: " + C)
-  # print("Pedidos de Venda: " + V)
+ index =oldArrayProduto.index(produto)
+ N= produto
+ E= str(estoque['quantidadeProduto'][index])
+ C= str(estoque['quantidadeCompras'][index])
+ V=str(estoque['quantidadeVendas'][index])
+ print("Produto: " + N)
+ print("Quantidade em Estoque: " + E)
+ print("Pedidos de Compra: " + C)
+ print("Pedidos de Venda: " + V)

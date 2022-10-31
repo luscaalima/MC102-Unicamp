@@ -6,19 +6,12 @@
 ###################################################
 
 # Leitura de dados
-# estoque = {}
-# print('estoque',len(estoque))
-
-# print(  'entrada',entrada.split(':')[1])
-
-
 estoque = {
 'nomeProduto':[],
 'quantidadeProduto':[], 
 'quantidadeCompras':[], 
 'quantidadeVendas':[] 
 }
-quantidadeIndisponivel=[]
 qntProduto=[]
 nomes=[]
 
@@ -56,23 +49,24 @@ while True:
           
         else :
           #converter quantidadeProduto
-          # print("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
-          # quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
           qntProduto.append(str(-quantidadeProduto) )
           nomes.append(str(nomeProduto))
     
       else: 
        qntProduto.append(str(-quantidadeProduto) )
        nomes.append(str(nomeProduto))
-      #  quantidadeIndisponivel.append("Quantidade indisponivel para a venda de " + str(-quantidadeProduto) + " unidade(s) do produto " + nomeProduto + ".")
     
     
 if len(qntProduto)>0:
+#  print('nomes',nomes)
+#  print('qntProduto',qntProduto)
+ indice = 0
  for nome in  nomes:
    index=nomes.index(nome)
-   X=str(qntProduto[index])
+   X=str(qntProduto[indice])
    N=nome
    print("Quantidade indisponivel para a venda de "+ X +" unidade(s) do produto "+ N + ".")
+   indice = indice+1
    
 oldArrayProduto = estoque['nomeProduto'][:]
 estoque['nomeProduto'].sort()

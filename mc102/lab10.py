@@ -9,9 +9,9 @@
 
 n = int(input())
 matriz = [input().split() for _ in range(n)]
-print('n',matriz)
-for i in range(len(matriz)) :
-    print(matriz[i])   
+# print('n',matriz)
+# for i in range(len(matriz)) :
+#     print(matriz[i])   
     
 time = input()
 m= int(input())
@@ -22,7 +22,7 @@ for j in range(m):
     caminho = input()
     linha = 0 
     coluna = 0
-    print('entrada sala',matriz[linha][coluna])
+    # print('entrada sala',matriz[linha][coluna])
     for cordenada in caminho :
      if cordenada =='N':
       linha = linha-1
@@ -64,10 +64,16 @@ for j in range(m):
      time='azul' 
 
 
-print('tesourosVermelho',tesourosVermelho)
-print('tesourosAzul',tesourosAzul)
 
+print("Tesouros encontrados pelo time azul:",tesourosAzul)
+print("Tesouros encontrados pelo time vermelho:",tesourosVermelho)
 
+if tesourosVermelho>tesourosAzul:
+    print("Vitoria do time verrmelho")
+elif tesourosVermelho==tesourosAzul:   
+    print("Empate") 
+else:
+     print("Vitoria do time azul")
 # Leitura e processamento dos caminhos
 
 

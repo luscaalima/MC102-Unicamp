@@ -24,7 +24,6 @@ for j in range(m):
     coluna = 0
     print('entrada sala',matriz[linha][coluna])
     for cordenada in caminho :
-     print('cordenada',cordenada)
      if cordenada =='N':
       linha = linha-1
        #achou tesouro
@@ -36,14 +35,13 @@ for j in range(m):
          matriz[linha][coluna]='.'
      elif cordenada =='S':
       linha = linha+1  
-      if time =='azul':
-       tesourosAzul = tesourosAzul+1       
-      else:
-       tesourosVermelho = tesourosVermelho+1  
+      if matriz[linha][coluna] =='*': 
+        if time =='azul':
+         tesourosAzul = tesourosAzul+1       
+        else:
+         tesourosVermelho = tesourosVermelho+1  
       matriz[linha][coluna]='.'
-      
-      print('posição atual',matriz[linha][coluna])
-     elif cordenada =='0':
+     elif cordenada =='O':
       coluna = coluna-1  
       if matriz[linha][coluna] =='*':
          if time =='azul':
@@ -51,7 +49,6 @@ for j in range(m):
          else:
               tesourosVermelho = tesourosVermelho+1  
          matriz[linha][coluna]='.'
-      print('posição atual',matriz[linha][coluna]) 
      else :
       coluna = coluna+1  
       if matriz[linha][coluna] =='*':
@@ -60,8 +57,11 @@ for j in range(m):
          else:
               tesourosVermelho = tesourosVermelho+1  
          matriz[linha][coluna]='.'
-      print('posição atual',matriz[linha][coluna]) 
-     
+
+    if time == 'azul': 
+     time = 'vermelho'
+    else:
+     time='azul' 
 
 
 print('tesourosVermelho',tesourosVermelho)

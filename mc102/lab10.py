@@ -22,11 +22,9 @@ for j in range(m):
     caminho = input()
     linha = 0 
     coluna = 0
-    # print('entrada sala',matriz[linha][coluna])
     for cordenada in caminho :
      if cordenada =='N':
       linha = linha-1
-       #achou tesouro
       if matriz[linha][coluna] =='*':
          if time =='azul':
              tesourosAzul = tesourosAzul+1       
@@ -65,17 +63,11 @@ for j in range(m):
 
 
 
-print("Tesouros encontrados pelo time azul:",tesourosAzul)
-print("Tesouros encontrados pelo time vermelho:",tesourosVermelho)
 
+print ('Tesouros encontrados pelo time azul: '+str(tesourosAzul)+'\nTesouros encontrados pelo time vermelho: '+str(tesourosVermelho))
 if tesourosVermelho>tesourosAzul:
-    print("Vitoria do time verrmelho")
+    print('Vitoria do time vermelho')
 elif tesourosVermelho==tesourosAzul:   
-    print("Empate") 
+    print('Empate') 
 else:
-     print("Vitoria do time azul")
-# Leitura e processamento dos caminhos
-
-
-
-# Impressão da saída
+    print('Vitoria do time azul')
